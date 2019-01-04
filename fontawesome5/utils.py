@@ -3,7 +3,7 @@ import json
 
 from django.conf import settings
 
-PATH = getattr(settings, 'FONTAWESOME_ICONS_JSON', os.path.join(os.path.dirname(__file__), 'icons.json'))
+PATH = getattr(settings, 'FONTAWESOME_5_ICONS_JSON', os.path.join(os.path.dirname(__file__), 'icons.json'))
 
 def get_icon_choices():
 

@@ -2,6 +2,10 @@ from django.conf import settings
 from django.utils.html import format_html, mark_safe
 from django.utils.html import format_html
 
+
+prefix = getattr(settings, 'FONTAWESOME_5_PREFIX', 'fa')
+
+
 class Icon(object):
 
     def as_html(self):
@@ -31,7 +35,7 @@ class Icon(object):
         border=False, fixed_width=False, flip='', li=False, pull='', pulse=False, rotate=0, size='', spin=False):
 
         self.style_prefix = style_prefix
-        self.prefix = getattr(settings, 'FONTAWESOME_PREFIX', 'fa')
+        self.prefix = prefix
         self.icon = icon
         self.title = title
         self.color = color

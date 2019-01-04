@@ -26,7 +26,7 @@ class IconWidget(forms.Select):
 
         css = {
             'all': (
-                getattr(settings, 'FONTAWESOME_CSS_URL', 'fontawesome/css/all.min.css'),
+                getattr(settings, 'FONTAWESOME_5_CSS_URL', 'fontawesome/css/all.min.css'),
                 'fontawesome/css/django-fontawesome.css'
             )
         }

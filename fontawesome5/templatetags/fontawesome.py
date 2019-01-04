@@ -19,11 +19,11 @@ def fa5_icon(*args, **kwargs):
 def fontawesome5_static():
     fontawesome_css = format_html(
         '<link href="{0}" rel="stylesheet" media="all">\n',
-        getattr(settings, 'FONTAWESOME_CSS_URL', static('fontawesome/css/all.min.css')))
-    dfa_css = format_html(
+        getattr(settings, 'FONTAWESOME_5_CSS_URL', static('fontawesome/css/all.min.css')))
+    css = format_html(
         '<link href="{0}" rel="stylesheet" media="all">\n', 
         static('fontawesome/css/django-fontawesome.css'))
-    dfa_js = format_html(
+    js = format_html(
             '<script type="text/javascript" src="{}"></script>\n',
             static('fontawesome/js/django-fontawesome.js'))
-    return fontawesome_css + dfa_css + dfa_js
+    return fontawesome_css + css + js

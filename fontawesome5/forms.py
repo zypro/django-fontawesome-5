@@ -20,7 +20,7 @@ class IconFormField(forms.Field):
         classes = widget.attrs.get('class', '').split()
         classes.append('d-fa-select')
 
-        fontawesome_prefix = getattr(settings, 'FONTAWESOME_PREFIX', 'fa')
+        fontawesome_prefix = getattr(settings, 'FONTAWESOME_PREFIX_5', 'fa')
 
         return {
             'class': ' '.join(classes),
