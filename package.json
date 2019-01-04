@@ -1,0 +1,25 @@
+{
+  "name": "django-fontawesome-5",
+  "version": "1.0.0",
+  "description": "Build tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Frost",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "autoprefixer": "^9.4.3",
+    "cssnano": "^4.1.8",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-scss": "^1.4.0",
+    "gulp-uglify": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "gulp-babel": "^8.0.0"
+  }
+}

@@ -1,0 +1,54 @@
+.d-fa-select {
+  position: relative;
+  input, select {
+    width: 100%;
+  }
+
+  select {
+    display: none;
+    max-height: 40vh;
+    position: relative;
+  }
+  input {
+    display: block;
+  }
+  .d-fa-dropdown {
+    background-color: white;
+    border: 1px solid #ccc;
+    display: none;
+    left: 0;
+    max-height: 40vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    top: 100%;
+    width: calc(100% + 12px);
+    z-index: 7000;
+    a {
+      align-items: center;
+      color: #424242;
+      cursor: pointer;
+      display: flex;
+      height: 1.5em;
+      padding: .35em;
+      text-decoration: none;
+      @media(hover: hover) {
+        &:hover {
+          background-color: #eee;
+        }
+      }
+      i {
+        font-size: 1.5em;
+        margin-right: .5em;
+      }
+    }
+    &:focus-within {
+      display: block;
+    }
+  }
+  &:focus-within {
+    .d-fa-dropdown {
+      display: block;
+    }
+  }
+}

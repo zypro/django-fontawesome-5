@@ -3,3 +3,8 @@
 *.egg-info
 build
 dist
+
+node_modules
+.gulp-scss-cache
+.sass-cache
+.vscode

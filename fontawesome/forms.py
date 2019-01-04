@@ -18,7 +18,7 @@ class IconFormField(forms.Field):
 
     def widget_attrs(self, widget):
         classes = widget.attrs.get('class', '').split()
-        classes.append('fontawesome-select')
+        classes.append('d-fa-select')
 
         fontawesome_prefix = getattr(settings, 'FONTAWESOME_PREFIX', 'fa')
 
