@@ -12,7 +12,7 @@ Add 'fontawesome' to your installed `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'fontawesome',
+        'fontawesome5',
     )
 
 
