@@ -50,7 +50,7 @@ Or you can use the `{% fa5_icon %}` template tag.
 
 Required arguments are `style_prefix` and `icon`
 
-Key word arguments:
+### Key word arguments:
   - color (CSS Color Names)
   - title
   - border (boolean)
