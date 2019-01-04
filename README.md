@@ -18,7 +18,7 @@ Add 'fontawesome' to your installed `INSTALLED_APPS`:
 
 Import and use `IconField`:
     
-    from fontawesome.fields import IconField
+    from fontawesome5.fields import IconField
 
     class Category(models.Model):
         ...
@@ -51,8 +51,8 @@ Or you can use the `{% fa5_icon %}` template tag.
 Required arguments are `style_prefix` and `icon`
 
 ### Key word arguments:
-  - color (CSS Color Names)
   - title
+  - color (CSS Color Names)
   - border (boolean)
   - fixed_width (boolean)
   - flip (horizontal, vertical)
