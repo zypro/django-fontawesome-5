@@ -2,7 +2,7 @@
 
 A utility for using icons in models, forms, and templates.
 
-![Clip of dropdown](./docs/images/django-fontawesome5.gif)
+![Clip of dropdown](https://github.com/BenjjinF/django-fontawesome/blob/master/docs/images/django-fontawesome-5.gif)
 
 ## Installation / Usage
 
