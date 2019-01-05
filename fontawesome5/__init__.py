@@ -1,14 +1,23 @@
-from django.conf import settings
+from abc import ABC, abstractmethod
+
 from django.utils.html import format_html, mark_safe
-from django.utils.html import format_html
 
 
-prefix = getattr(settings, 'FONTAWESOME_5_PREFIX', 'fa')
+class IconAbstract(ABC):
+
+    @abstractmethod
+    def as_html(self):
+        pass
+
+    def __str__(self):
+        return "{},{}".format(self.style_prefix, self.icon)
 
 
-class Icon(object):
+
+class Icon(IconAbstract):
 
     def as_html(self):
+
         if not self.icon and self.style_prefix:
             return ''
         base_string = '<i {title} class="{style_prefix} {prefix}-{icon}{border}{fixed_width}{flip}{li}{pull}{pulse}{rotate}{size}{spin}" {color}></i>'
@@ -31,11 +40,11 @@ class Icon(object):
             spin=' fa-spin' if self.spin else '',
         ))
 
-    def __init__(self, style_prefix, icon, title='', color='',
-        border=False, fixed_width=False, flip='', li=False, pull='', pulse=False, rotate=0, size='', spin=False):
+    def __init__(self, style_prefix, icon,title='', color='',  prefix='fa', 
+        border=False, fixed_width=False, flip='', li=False, pull='', pulse=False, rotate=0, size='', spin=False, **kwargs):
 
-        self.style_prefix = style_prefix
         self.prefix = prefix
+        self.style_prefix = style_prefix
         self.icon = icon
         self.title = title
         self.color = color
@@ -48,11 +57,3 @@ class Icon(object):
         self.rotate = rotate
         self.size = size
         self.spin = spin
-
-    def __str__(self):
-        return "['{}', '{}']".format(self.style_prefix, self.icon_id)
-
-    def __unicode__(self):
-        return str(self)
-
-        

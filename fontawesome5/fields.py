@@ -1,12 +1,15 @@
 from __future__ import absolute_import
 
-import json
-
 from django.db import models
 from django.utils.translation import ugettext as _
 
-from . import Icon
+from .app_settings import get_icon_class, get_prefix
 from .forms import IconFormField
+
+
+prefix = get_prefix()
+Icon = get_icon_class()
+
 
 class IconField(models.Field):
     description = _('A fontawesome icon field')
@@ -23,8 +26,8 @@ class IconField(models.Field):
         if value is None:
             return value
 
-        values = json.loads(value.replace("'", '"'))
-        return Icon(values[0], values[1])
+        values = value.split(',')
+        return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
     def to_python(self, value):
         if not value or value == 'None':
@@ -33,12 +36,11 @@ class IconField(models.Field):
         if isinstance(value, Icon):
             return value
 
-        values = json.loads(value.replace("'", '"'))
-        return Icon(values[0], values[1])
+        values = value.split(',')
+        return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
     def get_prep_value(self, value):
         return str(value)
-
 
     def formfield(self, **kwargs):
         defaults = {

@@ -1,13 +1,15 @@
 import os
 import json
 
-from django.conf import settings
+from .app_settings import get_fontawesome_5_icon_json_path
 
-PATH = getattr(settings, 'FONTAWESOME_5_ICONS_JSON', os.path.join(os.path.dirname(__file__), 'icons.json'))
+
+PATH = get_fontawesome_5_icon_json_path()
+
 
 def get_icon_choices():
 
-    CHOICES = [('', '')]
+    CHOICES = [(',', '')]
 
     styles = {
         'brands': 'fab',
@@ -27,10 +29,7 @@ def get_icon_choices():
             if styles_len > 1:
                 label += " ({})".format(style)
             CHOICES.append((
-                [
-                    styles[style],
-                    icon,
-                ],
+                '{},{}'.format(styles[style], icon),
                 label,
             ))
 

@@ -3,8 +3,13 @@ from __future__ import absolute_import
 from django import forms
 from django.conf import settings
 
-from . import Icon
+from .app_settings import get_icon_class, get_prefix
 from .widgets import IconWidget
+
+
+Icon = get_icon_class()
+prefix = get_prefix()
+
 
 class IconFormField(forms.Field):
 
@@ -20,7 +25,7 @@ class IconFormField(forms.Field):
         classes = widget.attrs.get('class', '').split()
         classes.append('d-fa-select')
 
-        fontawesome_prefix = getattr(settings, 'FONTAWESOME_PREFIX_5', 'fa')
+        fontawesome_prefix = prefix
 
         return {
             'class': ' '.join(classes),

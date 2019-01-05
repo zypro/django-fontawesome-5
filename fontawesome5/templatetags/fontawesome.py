@@ -3,10 +3,13 @@ from __future__ import unicode_literals
 from django import template
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.utils.html import format_html, mark_safe
+from django.utils.html import format_html, mark_safe, conditional_escape
 
-from .. import Icon
+from ..app_settings import get_css, get_icon_class
 
+
+css = get_css()
+Icon = get_icon_class()
 register = template.Library()
 
 
@@ -17,13 +20,14 @@ def fa5_icon(*args, **kwargs):
 
 @register.simple_tag
 def fontawesome5_static():
-    fontawesome_css = format_html(
-        '<link href="{0}" rel="stylesheet" media="all">\n',
-        getattr(settings, 'FONTAWESOME_5_CSS_URL', static('fontawesome/css/all.min.css')))
-    css = format_html(
-        '<link href="{0}" rel="stylesheet" media="all">\n', 
-        static('fontawesome/css/django-fontawesome.css'))
-    js = format_html(
-            '<script type="text/javascript" src="{}"></script>\n',
-            static('fontawesome/js/django-fontawesome.js'))
-    return fontawesome_css + css + js
+    staticfiles = []
+
+    for stylesheet in css:
+        staticfiles.append(format_html(
+            '<link href="{}" rel="stylesheet" media="all">', stylesheet))
+
+    staticfiles.append(format_html(
+        '<script type="text/javascript" src="{}"></script>', static('django-fontawesome.js')
+    ))
+
+    return mark_safe(conditional_escape('\n').join(staticfiles))

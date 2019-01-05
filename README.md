@@ -75,10 +75,16 @@ Required arguments are `style_prefix` and `icon`
 
 You can configure django-fontawesome to use another release/source/cdn by specifying::
 
-    FONTAWESOME_CSS_URL = '//cdn.example.com/fontawesome-min.css'  # absolute url
-    FONTAWESOME_CSS_URL = 'myapp/css/fontawesome.min.css'  # relative url
-    FONTAWESOME_ICONS_JSON = /path/to/icons.json
-    FONTAWESOME_PREFIX = 'bg'  # default is 'fa'
+    FONTAWESOME_5_CSS = # URL or False
+        default: 'fontawesome/css/django-fontawesome.css'
+    FONTAWESOME_5_CSS_ADMIN = # URL or path
+        default:FONTAWESOME_5_CSS
+    FONTAWESOME_5_ICONS_JSON = 'Custom'
+        default: '/path/to/icons.json'
+    FONTAWESOME_5_ICON_CLASS = CustomIconClass 
+        default: Icon
+    FONTAWESOME_5_PREFIX = 'custom_prefix'
+        default: 'fa'
 
 ## Credit
 
@@ -88,3 +94,5 @@ Credit to https://github.com/redouane for the original ~
  - Updated for use with Font Awesome 5
  - Removed PyYAML, Select2, and jQuery as dependencies
  - Static files tag includes static dependencies for use outside admin
+ - Moved icon logic to Icon class
+ - Allowed for custom Icon classes
