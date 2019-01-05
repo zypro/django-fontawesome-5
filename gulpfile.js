@@ -20,8 +20,7 @@ gulp.task('css', () => {
       .pipe(plumber())
       .pipe(scss())
       .pipe(postcss(plugins))
-      .pipe(gulp.dest('fontawesome/static/fontawesome/css/'))
-      .pipe(gulp.dest('../django_test/another/static/fontawesome/css'))
+      .pipe(gulp.dest('fontawesome5/static/fontawesome/css/'))
 })
 
 gulp.task('js', () => {
@@ -31,8 +30,7 @@ gulp.task('js', () => {
     presets: ['@babel/env']
   }))
   .pipe(uglify())
-  .pipe(gulp.dest('fontawesome/static/fontawesome/js/'))
-  .pipe(gulp.dest('../django_test/another/static/fontawesome/js'))
+  .pipe(gulp.dest('fontawesome5/static/fontawesome/js/'))
 })
 
 gulp.task('watch', () => {
