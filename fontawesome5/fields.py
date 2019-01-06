@@ -23,21 +23,20 @@ class IconField(models.Field):
         return 'CharField'
 
     def from_db_value(self, value, expression, connection, context):
+        if not ',' in value:
+            value = shims.get(value, None)
         if value is None:
             return value
-        if not ',' in value:
-            value = shims.get(value, 'None,None')
         values = value.split(',')
         return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
     def to_python(self, value):
-        if not value or value == 'None':
-            return None
-
         if isinstance(value, Icon):
             return value
         if not ',' in value:
-            value = shims.get(value, 'None,None')
+            value = shims.get(value, None)
+        if not value or value == 'None':
+            return None
         values = value.split(',')
         return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
