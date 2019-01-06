@@ -19,7 +19,7 @@ def get_icon_class():
 
 
 def get_fontawesome_5_css():
-    return static(getattr(settings, 'FONTAWESOME_5_CSS', 'fontawesome/css/all.min.css'))
+    return getattr(settings, 'FONTAWESOME_5_CSS', static('fontawesome/css/all.min.css'))
 
 
 def get_css():
@@ -32,12 +32,11 @@ def get_css():
 
 def get_css_admin():
     css = get_css()
-    css_admin = static(getattr(settings, 'FONTAWESOME_5_CSS_ADMIN', None))
+    css_admin = getattr(settings, 'FONTAWESOME_5_CSS_ADMIN', None)
     if css_admin:
         css.append(css_admin)
     return css
 
 
 def get_fontawesome_5_icon_json_path():
-    path = getattr(settings, 'FONTAWESOME_5_ICONS_JSON', 'icons.json')
-    return os.path.join(os.path.dirname(__file__), path)
+    return getattr(settings, 'FONTAWESOME_5_ICONS_JSON', 'icons.json')
