@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 
 from .app_settings import get_icon_class, get_prefix
 from .forms import IconFormField
-
+from .shims import shims
 
 prefix = get_prefix()
 Icon = get_icon_class()
@@ -25,7 +25,8 @@ class IconField(models.Field):
     def from_db_value(self, value, expression, connection, context):
         if value is None:
             return value
-
+        if not ',' in value:
+            value = shims.get(value, 'None,None')
         values = value.split(',')
         return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
@@ -35,7 +36,8 @@ class IconField(models.Field):
 
         if isinstance(value, Icon):
             return value
-
+        if not ',' in value:
+            value = shims.get(value, 'None,None')
         values = value.split(',')
         return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
 
