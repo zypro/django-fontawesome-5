@@ -34,6 +34,19 @@ Include Static Files
       ...
     </head>
 
+## Settings
+
+You can configure django-fontawesome to use another release/source/cdn by specifying::
+
+    FONTAWESOME_5_CSS = URL or None
+        default: 'fontawesome/css/django-fontawesome.css'
+    FONTAWESOME_5_CSS_ADMIN = URL or path
+        default: None
+    FONTAWESOME_5_ICON_CLASS = 'default' or 'semantic_ui' 
+        default: 'default'
+    FONTAWESOME_5_PREFIX = 'custom_prefix'
+        default: 'fa'
+
 ## Rendering
 
 You can do a simple render  in your template like this:
@@ -44,47 +57,74 @@ You can do a simple render  in your template like this:
         {% endif %}
     {% endfor %}
 
+### Default Renderer
+
 Or you can use the `{% fa5_icon %}` template tag.
 
-    {% fa5_icon 'fas' 'check' %}
+    {% fa5_icon 'check' 'fas' %}
 
-Required arguments are `style_prefix` and `icon`
+Required positional arguments: `icon`, `style_prefix`
 
-### Key word arguments:
-  - title
-  - color (CSS Color Names)
-  - border (boolean)
-  - fixed_width (boolean)
-  - flip (horizontal, vertical)
-  - li (boolean)
-  - pull (left, right)
-  - pulse (boolean)
-  - rotate (degrees)
+#### Key word arguments:
+  - color `CSS Color Names`
+  - border `boolean`
+  - fixed_width `boolean`
+  - flip
+    - `horizontal`
+    - `vertical`
+  - li `boolean`
+  - pull
+   - `left`
+   - `right`
+  - pulse `boolean`
+  - rotate `integer`
   - size 
-     - fa-xs
-     - fa-sm
-     - fa-lg
-     - fa-2x
-     - fa-3x
-     - fa-5x
-     - fa-7x
-     - fa-10x
-  - spin (boolean)
+     - `fa-xs`
+     - `fa-sm`
+     - `fa-lg`
+     - `fa-2x`
+     - `fa-3x`
+     - `fa-5x`
+     - `fa-7x`
+     - `fa-10x`
+  - spin `boolean`
+  - title `string`
   
-## Settings
+### Semantic UI Renderer
 
-You can configure django-fontawesome to use another release/source/cdn by specifying::
+Or you can use the `{% fa5_icon %}` template tag.
 
-    FONTAWESOME_5_CSS = # URL or False
-        default: 'fontawesome/css/django-fontawesome.css'
-    FONTAWESOME_5_CSS_ADMIN = # URL or path
-        default:FONTAWESOME_5_CSS
-    FONTAWESOME_5_ICONS_JSON = 'Custom'
-        default: '/path/to/icons.json'
-    FONTAWESOME_5_ICON_CLASS = CustomIconClass 
-        default: Icon
-    FONTAWESOME_5_PREFIX = 'custom_prefix'
-        default: 'fa'
+    {% fa5_icon 'check' %}
+
+Required positional arguments: `icon`
+
+#### Key word arguments:
+  - bordered `boolean`
+  - circular `boolean`
+  - colored `Semantic UI Colors`
+  - disabled `boolean`
+  - fitted `boolean`
+  - flipped
+    - `horizontal`
+    - `vertical`
+  - inverted `boolean`
+  - link `boolean`
+  - loading `boolean`
+  - rotated 
+   - `clockwise`
+   - `counterclockwise`
+  - pulse `boolean`
+  - rotate `integer`
+  - size 
+     - `fa-xs`
+     - `fa-sm`
+     - `fa-lg`
+     - `fa-2x`
+     - `fa-3x`
+     - `fa-5x`
+     - `fa-7x`
+     - `fa-10x`
+  - title `string`
 
 ## Credit
 
@@ -94,5 +134,4 @@ Credit to https://github.com/redouane for the original ~
  - Updated for use with Font Awesome 5
  - Removed PyYAML, Select2, and jQuery as dependencies
  - Static files tag includes static dependencies for use outside admin
- - Moved icon logic to Icon class
- - Allowed for custom Icon classes
+ - Moved rendering logic to renderers

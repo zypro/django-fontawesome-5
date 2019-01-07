@@ -3,12 +3,13 @@ from __future__ import absolute_import
 from django.db import models
 from django.utils.translation import ugettext as _
 
-from .app_settings import get_icon_class, get_prefix
+from . import Icon
+from .app_settings import get_prefix
 from .forms import IconFormField
 from .shims import shims
 
+
 prefix = get_prefix()
-Icon = get_icon_class()
 
 
 class IconField(models.Field):
@@ -28,7 +29,7 @@ class IconField(models.Field):
         if value is None:
             return value
         values = value.split(',')
-        return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
+        return Icon(name=values[1], style_prefix=values[0], prefix=prefix)
 
     def to_python(self, value):
         if isinstance(value, Icon):
@@ -38,7 +39,7 @@ class IconField(models.Field):
         if not value or value == 'None':
             return None
         values = value.split(',')
-        return Icon(style_prefix=values[0], prefix=prefix, icon=values[1])
+        return Icon( name=values[1], style_prefix=values[0], prefix=prefix)
 
     def get_prep_value(self, value):
         return str(value)

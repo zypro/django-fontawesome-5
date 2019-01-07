@@ -3,11 +3,10 @@ from __future__ import absolute_import
 from django import forms
 from django.conf import settings
 
-from .app_settings import get_icon_class, get_prefix
+from . import Icon
+from .app_settings import get_prefix
 from .widgets import IconWidget
 
-
-Icon = get_icon_class()
 prefix = get_prefix()
 
 

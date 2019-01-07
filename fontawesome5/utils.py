@@ -1,10 +1,11 @@
 import os
 import json
 
-from .app_settings import get_fontawesome_5_icon_json_path
+from django.conf import settings
 
 
-PATH = get_fontawesome_5_icon_json_path()
+renderer = getattr(settings, 'FONTAWESOME_5_RENDERER', 'default')
+path = 'icons_semantic_ui.json' if renderer == 'semantic_ui' else 'icons.json'
 
 
 def get_icon_choices():
@@ -18,7 +19,7 @@ def get_icon_choices():
         'light': 'fal',
     }
 
-    with open(PATH) as f:
+    with open(os.path.join(os.path.dirname(__file__), path)) as f:
         icons = json.load(f)
 
     for icon in icons:

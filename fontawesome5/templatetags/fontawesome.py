@@ -5,11 +5,11 @@ from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.html import format_html, mark_safe, conditional_escape
 
-from ..app_settings import get_css, get_icon_class
+from .. import Icon
+from ..app_settings import get_css
 
 
 css = get_css()
-Icon = get_icon_class()
 register = template.Library()
 
 
