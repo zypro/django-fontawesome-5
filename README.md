@@ -6,7 +6,7 @@ A utility for using icons in models, forms, and templates.
 
 ## Installation / Usage
 
-    pipenv install -e git+https://github.com/BenjjinF/django-fontawesome-5.git#egg=django-fontawesome-5
+    pipenv install django-fontawesome-5
 
 Add 'fontawesome' to your installed `INSTALLED_APPS`:
 
