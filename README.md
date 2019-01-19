@@ -8,17 +8,17 @@ A utility for using icons in models, forms, and templates.
 
     pipenv install django-fontawesome-5
 
-Add 'fontawesome' to your installed `INSTALLED_APPS`:
+Add 'fontawesome_5' to your installed `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'fontawesome5',
+        'fontawesome_5',
     )
 
 
 Import and use `IconField`:
     
-    from fontawesome5.fields import IconField
+    from fontawesome_5.fields import IconField
 
     class Category(models.Model):
         ...
@@ -27,10 +27,10 @@ Import and use `IconField`:
 
 Include Static Files
 
-    {% load fontawesome5 %}
+    {% load fontawesome_5 %}
 
     <head>
-      {% fontawesome5_static %} 
+      {% fontawesome_5_static %} 
       ...
     </head>
 
@@ -39,7 +39,7 @@ Include Static Files
 You can configure django-fontawesome to use another release/source/cdn by specifying::
 
     FONTAWESOME_5_CSS = URL or None
-        default: 'fontawesome/css/django-fontawesome.css'
+        default: 'fontawesome_5/css/django-fontawesome.css'
     FONTAWESOME_5_CSS_ADMIN = URL or path
         default: None
     FONTAWESOME_5_ICON_CLASS = 'default' or 'semantic_ui' 
@@ -66,6 +66,7 @@ Or you can use the `{% fa5_icon %}` template tag.
 Required positional arguments: `icon`, `style_prefix`
 
 #### Key word arguments:
+  - class `extra custom classes`
   - color `CSS Color Names`
   - border `boolean`
   - fixed_width `boolean`
@@ -99,6 +100,7 @@ Or you can use the `{% fa5_icon %}` template tag.
 Required positional arguments: `icon`
 
 #### Key word arguments:
+  - class `extra custom classes`
   - bordered `boolean`
   - circular `boolean`
   - colored `Semantic UI Colors`

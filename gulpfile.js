@@ -20,7 +20,7 @@ gulp.task('css', () => {
       .pipe(plumber())
       .pipe(scss())
       .pipe(postcss(plugins))
-      .pipe(gulp.dest('fontawesome5/static/fontawesome/css/'))
+      .pipe(gulp.dest('fontawesome_5/static/fontawesome_5/css/'))
 })
 
 gulp.task('js', () => {
@@ -30,7 +30,7 @@ gulp.task('js', () => {
     presets: ['@babel/env']
   }))
   .pipe(uglify())
-  .pipe(gulp.dest('fontawesome5/static/fontawesome/js/'))
+  .pipe(gulp.dest('fontawesome_5/static/fontawesome_5/js/'))
 })
 
 gulp.task('watch', () => {

@@ -8,8 +8,8 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-fontawesome-5',
-    version='1.0.5',
-    packages=['fontawesome5'],
+    version='1.0.16',
+    packages=['fontawesome_5'],
     include_package_data=True,
     license='BSD License',
     description='A utility for using icons in models, forms, and templates.',
