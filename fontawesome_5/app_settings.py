@@ -9,7 +9,7 @@ def get_prefix():
 
 
 def get_icon_renderer():
-    from .renderers import DefaultRenderer, SemanticUIRenderer
+    from .renderers import DefaultRenderer, SemanticUIRenderer # pylint: disable=import-outside-toplevel
     renderers = {
         'default': DefaultRenderer,
         'semantic_ui': SemanticUIRenderer
