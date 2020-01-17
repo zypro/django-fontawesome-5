@@ -8,7 +8,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-fontawesome-5',
-    version='1.0.16',
+    version='1.0.17',
     packages=['fontawesome_5'],
     include_package_data=True,
     license='BSD License',
@@ -25,5 +25,8 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Topic :: Utilities',
+    ],
+    install_requires=[
+        'Django>=2.1',
     ],
 )
