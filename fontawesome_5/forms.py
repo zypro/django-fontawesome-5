@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 from django import forms
-from django.conf import settings
 
 from . import Icon
 from .app_settings import get_prefix
@@ -16,7 +15,7 @@ class IconFormField(forms.Field):
         self.widget = IconWidget
 
         if 'initial' in kwargs:
-           kwargs['initial'] = Icon(kwargs['initial'])
+            kwargs['initial'] = Icon(kwargs['initial'])
 
         super(IconFormField, self).__init__(**kwargs)
 

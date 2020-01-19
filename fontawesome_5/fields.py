@@ -23,7 +23,8 @@ class IconField(models.Field):
     def get_internal_type(self):
         return 'CharField'
 
-    def from_db_value(self, value, expression, connection, *args, **kwargs):
+    @staticmethod
+    def from_db_value(value, expression, connection, *args, **kwargs):
         if value is None:
             return value
         if not ',' in value:
@@ -43,7 +44,7 @@ class IconField(models.Field):
         if not value or value == 'None':
             return None
         values = value.split(',')
-        return Icon( name=values[1], style_prefix=values[0], prefix=prefix)
+        return Icon(name=values[1], style_prefix=values[0], prefix=prefix)
 
     def get_prep_value(self, value):
         return str(value)

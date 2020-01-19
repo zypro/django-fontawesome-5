@@ -23,7 +23,7 @@ class DefaultRenderer:
         'title': 'title="{}"',
         'color': 'style="color:{};"',
     }
-    
+
     def render(self, Icon):
         if Icon.name:
             classes = []
@@ -40,8 +40,7 @@ class DefaultRenderer:
                 name=Icon.name,
                 classes=" ".join(classes),
                 attrs=" ".join(attrs)))
-        else:
-            return ''
+        return ''
 
 class SemanticUIRenderer:
 
@@ -83,14 +82,14 @@ class SemanticUIRenderer:
                     attrs.append(self.attrs[key].format(value))
 
             name = self.name_map[Icon.name] if Icon.name in self.name_map else Icon.name
-            
+
             processed_name = name.replace(
-                    "-alt", "-alternate"
-                ).replace(
-                    "-alternate-v", "-alternate-vertical"
-                ).replace(
-                    "-alternate-h", "-alternate-horizontal"
-                ).replace("-", " ")
+                "-alt", "-alternate"
+            ).replace(
+                "-alternate-v", "-alternate-vertical"
+            ).replace(
+                "-alternate-h", "-alternate-horizontal"
+            ).replace("-", " ")
 
             if Icon.style_prefix == 'far':
                 processed_name += ' outline'
@@ -99,5 +98,4 @@ class SemanticUIRenderer:
                 name=processed_name,
                 classes=" ".join(classes),
                 attrs=" ".join(attrs)))
-        else:
-            return ''
+        return ''
