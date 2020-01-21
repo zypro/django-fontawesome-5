@@ -26,7 +26,7 @@ def fontawesome_5_static():
             '<link href="{}" rel="stylesheet" media="all">', stylesheet))
 
     staticfiles.append(format_html(
-        '<script type="text/javascript" src="{}"></script>', static('django-fontawesome.js')
+        '<script type="text/javascript" src="{}"></script>', static('fontawesome_5/js/django-fontawesome.js')
     ))
 
     return mark_safe(conditional_escape('\n').join(staticfiles))
