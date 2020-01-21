@@ -16,7 +16,9 @@ jobs:
         with:
           node-version: 12
       - name: Install Node Dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install -g eslint stylelint rollup
       - name: Eslint
         run: eslint src
       - name: Stylelint
