@@ -40,6 +40,6 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip pipenv
-          pipenv install
+          pipenv install --deploy --system
       - name: Pylint
         run: pylint fontawesome_5
