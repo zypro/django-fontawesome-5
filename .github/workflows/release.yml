@@ -1,0 +1,65 @@
+name: Upload Python Package
+
+env:
+    STATIC_PATH: fontawesome_5/static/fontawesome_5
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install Node Dependencies
+        run: |
+          npm install
+          npm install -g rollup
+      - name: Build
+        run: npm run build:production
+      - name: Upload js artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: js
+          path: ${{ STATIC_PATH }}/js/django-fontawesome.js
+      - name: Upload css artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: css
+          path: ${{ STATIC_PATH }}/css/django-fontawesome.css
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip pipenv
+          pipenv install --deploy --system
+      - name: Download js artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: js
+          path: ${{ STATIC_PATH }}/js/
+      - name: Download css artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: css
+          path: ${{ STATIC_PATH }}/css/
+      - name: Build and publish
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.pypi_password }}
+        run: |
+          python setup.py sdist bdist_wheel
+          twine upload dist/*
