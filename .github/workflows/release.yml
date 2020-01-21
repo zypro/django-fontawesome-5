@@ -1,7 +1,4 @@
-name: Upload Python Package
-
-env:
-    STATIC_PATH: fontawesome_5/static/fontawesome_5
+name: Release
 
 on:
   release:
@@ -27,12 +24,12 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: js
-          path: ${{ STATIC_PATH }}/js/django-fontawesome.js
+          path: fontawesome_5/static/fontawesome_5/js/django-fontawesome.js
       - name: Upload css artifact
         uses: actions/upload-artifact@v1
         with:
           name: css
-          path: ${{ STATIC_PATH }}/css/django-fontawesome.css
+          path: fontawesome_5/static/fontawesome_5/css/django-fontawesome.css
   backend:
     name: Backend
     runs-on: ubuntu-latest
@@ -50,12 +47,12 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: js
-          path: ${{ STATIC_PATH }}/js/
+          path: fontawesome_5/static/fontawesome_5/js/
       - name: Download css artifact
         uses: actions/download-artifact@v1
         with:
           name: css
-          path: ${{ STATIC_PATH }}/css/
+          path: fontawesome_5/static/fontawesome_5/css/
       - name: Build and publish
         env:
           TWINE_USERNAME: __token__
