@@ -10,6 +10,7 @@ Does support Django 3.0, which *django-fontawesome* will not.
 1. Remove all occurences of     {% fontawesome_stylesheet %}
 1. Replace {% load fontawesome %} with {% load fontawesome_5 %}
 1. Replace '{% fontawesome_icon' with '{% fa5_icon'
+1. Replace iconnames, for example "bell" needs to be replaced with "bell fas" and "linedin-square" with "linkedin fab"
 
 ## Installation / Usage
 
