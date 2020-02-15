@@ -8,14 +8,27 @@ const weights = {
 class Option {
   constructor(dropdown, option, index) {
     this.container = dropdown.container;
-    const [stylePrefix, iconId] = option.value
-      ? option.value.split(",")
-      : ["", ""];
-    this.stylePrefix = stylePrefix;
-    this.iconId = iconId;
+    this.iconId = this.constructor.getIconId(option);
+    this.stylePrefix = this.constructor.getStylePrefix(option);
     this.label = option.text;
     this.weight = weights[this.stylePrefix];
     this.index = index;
+  }
+
+  // Events
+
+  onMouseUp() {
+    this.container.input.element.blur();
+  }
+
+  // Methods
+
+  static getIconId(option) {
+    return option.value ? option.value.split(",")[1] : "";
+  }
+
+  static getStylePrefix(option) {
+    return option.value ? option.value.split(",")[0] : "";
   }
 
   newIcon() {

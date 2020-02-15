@@ -6,44 +6,46 @@ class Dropdown {
   constructor(input) {
     this.input = input;
     this.container = input.container;
-    this.select = input.element.previousElementSibling;
   }
 
-  get dirty() {
-    return this.input.element.getAttribute("data-dirty") === "true";
+  // Events
+
+  onBlur() {
+    if (this.input.lastSelected) {
+      // eslint-disable-next-line no-param-reassign
+      this.value = this.input.lastSelected;
+    }
+    this.input.dirty = false;
   }
 
-  set dirty(boolean) {
-    this.input.element.setAttribute("data-dirty", boolean);
+  onMouseDown(event) {
+    event.preventDefault();
   }
 
-  get lastSelected() {
-    return this.input.element.getAttribute("data-last-selected");
-  }
-
-  set lastSelected(value) {
-    this.input.element.setAttribute("data-last-selected", value);
-  }
-
-  get selectedIndex() {
-    return this.select.selectedIndex;
-  }
-
-  setSelected(event) {
-    const index = event.target.getAttribute("data-index");
-    this.select.children[this.selectedIndex].setAttribute("selected", false);
-    this.select.children[index].setAttribute("selected", true);
-    this.lastSelected = event.target.text;
+  onMouseUp(event) {
+    const option = this.getOption(this.input.selected);
+    option.onMouseUp(event);
     this.value = event.target.text;
-    this.dirty = false;
+    this.input.dirty = false;
   }
 
-  get value() {
-    return this.input.element.value;
-  }
+  // Getters & Setters
 
-  set value(value) {
-    this.input.element.value = value;
+  get filteredOptions() {
+    if (this.value === this.input.lastSelected && !this.input.dirty)
+      return this.options;
+
+    if (this.value) {
+      const words = this.value.toLowerCase().split(/\s+/);
+      return this.options.filter(option => {
+        const match = words.filter(word => {
+          return option.label.toLowerCase().indexOf(word) > -1;
+        });
+        return match.length === words.length;
+      });
+    }
+
+    return this.options;
   }
 
   get options() {
@@ -57,40 +59,22 @@ class Dropdown {
     return (this._options = options);
   }
 
-  get filteredOptions() {
-    if (this.value === this.lastSelected && !this.dirty) return this.options;
-
-    if (this.value) {
-      const words = this.value.toLowerCase().split(/[,]+/);
-      return this.options.filter(option => {
-        const match = words.filter(word => {
-          return option.label.toLowerCase().indexOf(word) > -1;
-        });
-        return match.length === words.length;
-      });
-    }
-
-    return this.options;
+  get value() {
+    return this.input.element.value;
   }
 
-  addOnClick() {
-    this._element.addEventListener("click", event => this.onClick(event));
+  set value(value) {
+    this.input.element.value = value;
   }
 
-  onClick(event) {
-    this.setSelected(event);
-    event.target.blur();
-  }
+  // Methods
 
-  onBlur() {
-    if (this.value !== this.lastSelected) {
-      if (this.lastSelected) {
-        // eslint-disable-next-line no-param-reassign
-        this.value = this.lastSelected;
-      }
-    } else {
-      this.dirty = false;
-    }
+  getOption(option) {
+    const stylePrefix = Option.getStylePrefix(option);
+    const iconId = Option.getIconId(option);
+    return this.options.find(_option => {
+      return _option.stylePrefix === stylePrefix && _option.iconId === iconId;
+    });
   }
 
   generate() {
@@ -99,12 +83,11 @@ class Dropdown {
     this.filteredOptions.forEach(option => {
       option.append(element);
     });
-    if (this._element) {
-      this.container.element.removeChild(this._element);
-      this.dirty = true;
+    if (this.element) {
+      this.container.element.removeChild(this.element);
     }
-    this._element = this.container.element.appendChild(element);
-    this.addOnClick();
+    this.element = this.container.element.appendChild(element);
+    this.input.dirty = true;
   }
 }
 
