@@ -69,9 +69,9 @@ You can do a simple render  in your template like this:
 
 Or you can use the `{% fa5_icon %}` template tag.
 
-    {% fa5_icon 'check' 'fas' %}
+    {% fa5_icon 'github' 'fab' %}
 
-Required positional arguments: `icon`, `style_prefix`
+Positional arguments: `icon` (required), `style_prefix` (default: 'fas')
 
 #### Key word arguments:
   - class `extra custom classes`
