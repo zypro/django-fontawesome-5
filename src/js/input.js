@@ -5,6 +5,7 @@ class Input {
     this.container = container;
     this.element.value = this.text;
     this.element.setAttribute("data-last-selected", this.text);
+    this.preview = this.selectedOption.newIcon();
     this.addEventListeners();
   }
 
@@ -57,7 +58,7 @@ class Input {
 
   get dirty() {
     return this.element.getAttribute("data-dirty") === "true";
-    }
+  }
 
   set dirty(boolean) {
     this.element.setAttribute("data-dirty", boolean);
@@ -80,6 +81,18 @@ class Input {
 
   set lastSelected(value) {
     this.element.setAttribute("data-last-selected", value);
+  }
+
+  get preview() {
+    return this.container.element.querySelector(".d-fa-preview");
+  }
+
+  set preview(icon) {
+    if (this.preview) {
+      this.container.element.removeChild(this.preview);
+    }
+    icon.classList.add("d-fa-preview");
+    this.container.element.insertBefore(icon, this.element);
   }
 
   get select() {

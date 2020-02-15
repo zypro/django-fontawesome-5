@@ -18,6 +18,7 @@ class Option {
   // Events
 
   onMouseUp() {
+    this.container.input.preview = this.newIcon();
     this.container.input.element.blur();
   }
 
